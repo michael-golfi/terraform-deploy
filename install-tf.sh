@@ -8,23 +8,23 @@ sudo apt-get install -y golang-go
 
 # Add GOPATH
 echo "Add GOPATH"
-mkdir ~/go
-echo -e 'export GOPATH=~/go\nexport PATH=$PATH:~/go/bin' >> ~/.bashrc
+mkdir /home/ubuntu/go
+echo -e 'export GOPATH=~/go\nexport PATH=$PATH:~/go/bin' >> /home/ubuntu/.bashrc
 
 # Install Terraform
 echo "go get Terraform"
 go get github.com/hashicorp/terraform
 go get github.com/isaacsgi/terraform-provider-azurerm
-mv ~/go/src/github.com/isaacsgi ~/go/src/github.com/terraform-providers
+mv /home/ubuntu/go/src/github.com/isaacsgi /home/ubuntu/go/src/github.com/terraform-providers
 
 # Build Terraform providers
 echo "Making Terraform Azure Provider"
-cd ~/go/src/github.com/terraform-providers/terraform-provider-azurerm
+cd /home/ubuntu/go/src/github.com/terraform-providers/terraform-provider-azurerm
 make
 
 # Build Terraform
 echo "Making Terraform"
-cd ~/go/src/github.com/hashicorp/terraform
+cd /home/ubuntu/go/src/github.com/hashicorp/terraform
 make fmt && make quickdev
 
 echo "To use Terraform"
