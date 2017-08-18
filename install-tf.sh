@@ -8,8 +8,8 @@ sudo apt-get install -y golang-go
 
 # Add GOPATH
 echo "Add GOPATH"
-export GOPATH=~/go
-export PATH=$PATH:~/go/bin
+mkdir ~/go
+echo -e 'export GOPATH=~/go\nexport PATH=$PATH:~/go/bin' >> ~/.bashrc
 
 # Install Terraform
 echo "go get Terraform"
