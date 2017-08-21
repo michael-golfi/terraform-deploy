@@ -2,9 +2,9 @@
 
 # Install Golang 1.8
 echo "Installing go"
-sudo add-apt-repository -y ppa:longsleep/golang-backports
-sudo apt-get update -y
-sudo apt-get install -y golang-go
+DEBIAN_FRONTEND=noninteractive sudo add-apt-repository -y ppa:longsleep/golang-backports
+DEBIAN_FRONTEND=noninteractive sudo apt-get update -y
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y golang-go
 
 # Add GOPATH
 echo "Add GOPATH"
@@ -19,13 +19,12 @@ mv /home/ubuntu/go/src/github.com/isaacsgi /home/ubuntu/go/src/github.com/terraf
 
 # Build Terraform providers
 echo "Making Terraform Azure Provider"
-cd /home/ubuntu/go/src/github.com/terraform-providers/terraform-provider-azurerm
-make
+make -C /home/ubuntu/go/src/github.com/terraform-providers/terraform-provider-azurerm
 
 # Build Terraform
 echo "Making Terraform"
-cd /home/ubuntu/go/src/github.com/hashicorp/terraform
-make fmt && make quickdev
+make -C /home/ubuntu/go/src/github.com/hashicorp/terraform
+make -C /home/ubuntu/go/src/github.com/hashicorp/terraform quickdev
 
 echo "To use Terraform"
 echo 'export PATH=$PATH:~/go/bin'
